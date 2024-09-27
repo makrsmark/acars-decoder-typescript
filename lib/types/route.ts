@@ -7,11 +7,14 @@ import { Waypoint } from "./waypoint";
  */
 export interface Route {
     /** optional name. If not set, `waypoints` is required */
-    name?: string,
+    name?: string;
+
+    /** optional status */
+    status?: 'alternate' | 'filed' | 'inactive' | 'planned';
 
     /** optional runway */
-    runway?: string,
+    runway?: string;
 
     /** optional list of waypoints. If not set, `name` is required */
-    waypoints?: Waypoint[],
+    waypoints?: Waypoint[];
 }

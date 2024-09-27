@@ -100,6 +100,18 @@ export class FlightPlanUtils {
           label: 'Tail',
           value: decodeResult.raw.tail,
         });
+      } else if (fields[i].startsWith('RA')) {
+        decodeResult.raw.route_status = 'RA';
+        decodeResult.formatted.items.push({
+          type: 'status',
+          code: 'ROUTE_STATUS',
+          label: 'Route Status',
+          value: 'Alternate Route',
+        });
+        if (fields[i].length > 2) {
+          allKnownFields = allKnownFields && this.processFlightPlan(decodeResult, fields[i].split(':'));
+        }
+        decodeResult.raw.route_status = fields[i];
       } else if (fields[i].startsWith('RF')) {
         decodeResult.formatted.items.push({
           type: 'status',
